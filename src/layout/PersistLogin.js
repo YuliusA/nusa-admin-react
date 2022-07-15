@@ -30,11 +30,8 @@ const PersistLogin = () => {
             }
 
             // Avoids unwanted call to verifyRefreshToken
-            if (!auth?.accessToken && persist) {
-                verifyRefreshToken()
-            } else {
-                setIsLoading(false);
-            }
+            !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
+            
         }
 
         return () => {
