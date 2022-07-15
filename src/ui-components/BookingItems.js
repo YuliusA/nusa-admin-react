@@ -145,36 +145,35 @@ const BookingItems = () => {
         <>
             {/* {!isLoading ? */}
             {bookings?.length ?
-                (
-                    <Paper elevation={0}>
-                        <DataGrid
-                            autoHeight
-                            density='comfortable'
-                            rows={
-                                bookings.map((item, i) => ({
-                                    id: item._id,
-                                    prop: item.bookingItem.prop,
-                                    bookingDate: item.bookingDate,
-                                    bookingCode: item.bookingCode,
-                                    bookingItem: item.bookingItem.desc,
-                                    contact: item.contact.name,
-                                    bookingStatus: item.bookingStatus,
-                                }))
+                <Paper elevation={0}>
+                    <DataGrid
+                        autoHeight
+                        density='comfortable'
+                        rows={
+                            bookings.map((item, i) => ({
+                                id: item._id,
+                                prop: item.bookingItem.prop,
+                                bookingDate: item.bookingDate,
+                                bookingCode: item.bookingCode,
+                                bookingItem: item.bookingItem.desc,
+                                contact: item.contact.name,
+                                bookingStatus: item.bookingStatus,
+                            }))
+                        }
+                        columns={columns}
+                        pageSize={pageSize}
+                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                        rowsPerPageOptions={[10, 20, 40, 80, 100]}
+                        initialState={{
+                            sorting: {
+                                sortModel: [{ field: 'bookingDate', sort: 'desc' }],
                             }
-                            columns={columns}
-                            pageSize={pageSize}
-                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[10, 20, 40, 80, 100]}
-                            initialState={{
-                                sorting: {
-                                    sortModel: [{ field: 'bookingDate', sort: 'desc' }],
-                                }
-                            }}
-                            sx={{ '& .booking-link': { color: 'primary.main' }}}
-                            // checkboxSelection
-                        />
-                    </Paper>
-                ) : isLoading ?
+                        }}
+                        sx={{ '& .booking-link': { color: 'primary.main' }}}
+                        // checkboxSelection
+                    />
+                </Paper>
+                : isLoading ?
                     <Box sx={{
                         display: 'flex',
                         flexDirection: 'column',
