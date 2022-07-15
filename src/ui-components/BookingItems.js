@@ -137,8 +137,8 @@ const BookingItems = () => {
 
     return (
         <>
-            {!isLoading ?
-                bookings?.length ?
+            {/* {!isLoading ? */}
+                {bookings?.length ?
                 (
                     <Paper elevation={0}>
                         <DataGrid
@@ -168,8 +168,8 @@ const BookingItems = () => {
                             // checkboxSelection
                         />
                     </Paper>
-                ) : <Typography paragraph>No Bookings Found</Typography>
-            : 
+                ) : <Typography paragraph>No Bookings Found</Typography>}
+            {/* : 
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -178,8 +178,8 @@ const BookingItems = () => {
                     minHeight: '60vh'
                 }}>
                     <PageLoader />
-                </Box>
-            }
+            </Box>*/}
+            
         </>
     );
 }
