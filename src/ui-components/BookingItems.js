@@ -104,13 +104,13 @@ const BookingItems = () => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
-    const effectRan = useRef(false);
+    // const effectRan = useRef(false);
 
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
 
-        if (effectRan.current === true) {
+        // if (effectRan.current === true) {
             const getBookings = async () => {
                 try {
                     const response = await axiosPrivate.get('/bookings', {
@@ -127,12 +127,12 @@ const BookingItems = () => {
             }
 
             getBookings();
-            setIsLoading(false);
-        }
+        // }
 
         return () => {
-            effectRan.current = true;
+            // effectRan.current = true;
             isMounted = false;
+            setIsLoading(false);
             controller.abort();
         }
     }, []);
