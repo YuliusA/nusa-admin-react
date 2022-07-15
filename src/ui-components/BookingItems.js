@@ -127,12 +127,12 @@ const BookingItems = () => {
             }
 
             getBookings();
+            setIsLoading(false);
         }
 
         return () => {
             effectRan.current = true;
             isMounted = false;
-            setIsLoading(false);
             controller.abort();
         }
     }, []);
