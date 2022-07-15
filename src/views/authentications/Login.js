@@ -16,7 +16,7 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
@@ -41,6 +41,7 @@ const Login = () => {
     const errRef = useRef();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const [loading, setLoading] = useState(false);
     const [user, resetUser, userAttribs] = useInput('user','');
     const [pwd, setPwd] = useState('');
     const [showPwd, setShowPwd] = useState(false);
@@ -68,6 +69,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await axios.post('/auth',
@@ -112,7 +114,7 @@ const Login = () => {
             alignItems: 'center',
             maxWidth: 400
         }}>
-            <Paper component='form' onSubmit={handleSubmit} elevation={1} noValidate sx={{ p: { xs: 2, md: 3 }, borderRadius: 3 }}>
+            <Paper component='form' elevation={1} noValidate sx={{ p: { xs: 2, md: 3 }, borderRadius: 3 }}>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -184,16 +186,19 @@ const Login = () => {
                     </Grid>
                 </Grid>
 
-                <Button
-                    type='submit'
+                
+                <LoadingButton
                     fullWidth
-                    variant='contained'
-                    sx={{ mb: 1 }}
-                    disabled={!user || !pwd}
                     endIcon={<LoginIcon />}
+                    onClick={handleSubmit}
+                    loading={loading}
+                    loadingPosition='end'
+                    variant='contained'
+                    disabled={!user || !pwd}
+                    sx={{ mb: 1 }}
                 >
-                    Sign In
-                </Button>
+                    Sign in
+                </LoadingButton>
 
                 <Snackbar
                     open={showAlert}
