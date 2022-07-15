@@ -104,7 +104,6 @@ const BookingItems = () => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
-    // const effectRan = useRef(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -130,7 +129,6 @@ const BookingItems = () => {
         // }
 
         return () => {
-            // effectRan.current = true;
             isMounted = false;
             setIsLoading(false);
             controller.abort();
