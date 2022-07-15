@@ -139,7 +139,7 @@ const BookingItems = () => {
 
     return (
         <>
-            {!isLoading && bookings ?
+            {!isLoading ?
                 bookings?.length ?
                 (
                     <Paper elevation={0}>
