@@ -9,14 +9,14 @@ import PageLoader from '../ui-components/PageLoader';
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const refresh = useRefreshToken();
-    const effectRan = useRef(false);
+    // const effectRan = useRef(false);
     const { auth } = useAuth();
     const [persist] = useLocalStorage('persist', false);
 
     useEffect(() => {
         let isMounted = true;
 
-        if (effectRan.current === true) {
+        // if (effectRan.current === true) {
             const verifyRefreshToken = async () => {
                 try {
                     await refresh();
@@ -32,10 +32,10 @@ const PersistLogin = () => {
             // Avoids unwanted call to verifyRefreshToken
             !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
             
-        }
+        // }
 
         return () => {
-            effectRan.current = true;
+            // effectRan.current = true;
             isMounted = false;
         }
     }, [])
