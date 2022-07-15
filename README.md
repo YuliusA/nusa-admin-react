@@ -1,16 +1,4 @@
-# "React Persistent User Login Authentication with JWT Tokens"
-
-✅ [Check out my YouTube Channel with all of my tutorials](https://www.youtube.com/DaveGrayTeachesCode).
-
-**Description:**
-
-This repository shares the code applied during the [YouTube Tutorial](https://youtu.be/27KeYk-5vJw). 
-
-Build the backend REST API that I use for authentication in this tutorial with my [7 hour Node JS for Beginners course](https://youtu.be/f2EqECiTBL8) on my channel.
-
-Just starting with React? I have a [9 hour React course tutorial video](https://youtu.be/RVFAyFWO4go) on my channel.  
-
-I suggest completing my [8 hour JavaScript course tutorial video](https://youtu.be/EfAl9bwzVZk) before attempting React if you are new to Javascript.
+# "Nusatrip Admin Client Preview ~ powered by react"
 
 ### Academic Honesty
 
