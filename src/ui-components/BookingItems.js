@@ -126,11 +126,17 @@ const BookingItems = () => {
             }
 
             getBookings();
+
+            if (!bookings.length) {
+                console.log('No Booking Found');
+            } else {
+                setIsLoading(false);
+            }
         // }
 
         return () => {
             isMounted = false;
-            setIsLoading(false);
+            // setIsLoading(false);
             controller.abort();
         }
     }, []);
@@ -138,7 +144,7 @@ const BookingItems = () => {
     return (
         <>
             {/* {!isLoading ? */}
-                {bookings?.length ?
+            {bookings?.length ?
                 (
                     <Paper elevation={0}>
                         <DataGrid
@@ -168,7 +174,20 @@ const BookingItems = () => {
                             // checkboxSelection
                         />
                     </Paper>
-                ) : <Typography paragraph>No Bookings Found</Typography>}
+                ) : isLoading ?
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: '60vh'
+                    }}>
+                        <PageLoader />
+                    </Box>
+                    :
+                    <Typography paragraph>No Bookings Found</Typography>
+            }
+
             {/* : 
                 <Box sx={{
                     display: 'flex',
