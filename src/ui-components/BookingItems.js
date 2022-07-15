@@ -122,16 +122,12 @@ const BookingItems = () => {
                 } catch(err) {
                     console.error(err);
                     navigate('/login', { state: { from: location }, replace: true });
+                } finally {
+                    isMounted && setIsLoading(false);
                 }
             }
 
             getBookings();
-
-            if (!bookings.length) {
-                console.log('No Booking Found');
-            } else {
-                setIsLoading(false);
-            }
         // }
 
         return () => {
