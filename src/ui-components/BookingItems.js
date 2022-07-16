@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import moment from 'moment';
@@ -101,44 +101,38 @@ const BookingItems = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [bookings, setBookings] = useState();
     const [pageSize, setPageSize] = useState(10);
-    const effectRan = useRef(false);
+    // const effectRan = useRef(false);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
         let isMounted = true;
-        const controller = new AbortController();
 
-        if (effectRan.current === true) {
+        if (!bookings?.length) {
             const getBookings = async () => {
                 try {
-                    const response = await axiosPrivate.get('/bookings', {
-                        signal: controller.signal
-                    });
+                    const response = await axiosPrivate.get('/bookings');
 
                     console.log(response.data);
                     isMounted && setBookings(response.data);
-
-                } catch(err) {
+                }
+                catch(err) {
                     console.error(err);
                     navigate('/login', { state: { from: location }, replace: true });
-                } finally {
+                }
+                finally {
                     isMounted && setIsLoading(false);
                 }
             }
 
             getBookings();
-        }
 
             return () => {
-                effectRan.current = true;
                 isMounted = false;
-                // setIsLoading(false);
-                controller.abort();
             }
-
-    }, []);
+        }
+    }, [bookings]);
 
     return (
         <>
