@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useAuth from '../hooks/useAuth';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -9,14 +9,14 @@ import PageLoader from '../ui-components/PageLoader';
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const refresh = useRefreshToken();
-    // const effectRan = useRef(false);
+    const effectRan = useRef(false);
     const { auth } = useAuth();
     const [persist] = useLocalStorage('persist', false);
 
     useEffect(() => {
         let isMounted = true;
 
-        // if (effectRan.current === true) {
+        if (effectRan.current === false) {
             const verifyRefreshToken = async () => {
                 try {
                     await refresh();
@@ -31,12 +31,11 @@ const PersistLogin = () => {
 
             // Avoids unwanted call to verifyRefreshToken
             !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
-            
-        // }
 
-        return () => {
-            // effectRan.current = true;
-            isMounted = false;
+            return () => {
+                effectRan.current = true;
+                isMounted = false;
+            }
         }
     }, [])
 
