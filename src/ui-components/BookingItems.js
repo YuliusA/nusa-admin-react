@@ -134,7 +134,7 @@ const BookingItems = () => {
         return () => {
             effectRan.current = true;
             isMounted = false;
-            // setIsLoading(false);
+            setIsLoading(false);
             controller.abort();
         }
     }, []);
