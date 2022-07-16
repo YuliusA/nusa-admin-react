@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import moment from 'moment';
@@ -101,6 +101,7 @@ const BookingItems = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [bookings, setBookings] = useState();
     const [pageSize, setPageSize] = useState(10);
+    const effectRan = useRef(false);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -109,7 +110,7 @@ const BookingItems = () => {
         let isMounted = true;
         const controller = new AbortController();
 
-        // if (effectRan.current === true) {
+        if (effectRan.current === true) {
             const getBookings = async () => {
                 try {
                     const response = await axiosPrivate.get('/bookings', {
@@ -128,9 +129,10 @@ const BookingItems = () => {
             }
 
             getBookings();
-        // }
+        }
 
         return () => {
+            effectRan.current = true;
             isMounted = false;
             // setIsLoading(false);
             controller.abort();
@@ -182,18 +184,6 @@ const BookingItems = () => {
                     :
                     <Typography paragraph>No Bookings Found</Typography>
             }
-
-            {/* : 
-                <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: '60vh'
-                }}>
-                    <PageLoader />
-            </Box>*/}
-            
         </>
     );
 }
