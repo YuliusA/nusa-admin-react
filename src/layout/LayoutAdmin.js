@@ -123,22 +123,22 @@ const LayoutAdmin = ({ allowedRoles }) => {
                 <AppBar elevation={0} color='transparent' open={drawerOpen}>
                     <Toolbar>
                         <Grid container>
-                        <Grid item>
-                            <Tooltip title={!drawerOpen ? 'Show Menu' : 'Collapse Menu' } placement='right'>
-                                <Checkbox
-                                    icon={<ChevronRightIcon />}
-                                    onChange={toggleDrawerOpen}
-                                    checked={drawerOpen}
-                                    checkedIcon={<ChevronLeftIcon />}
-                                />
-                            </Tooltip>
-                        </Grid>
-
-                        <HideOnScroll>
-                            <Grid item flexGrow={1} className='ScrollRight-item'>
-                                <ToggleMode />
+                            <Grid item>
+                                <Tooltip title={!drawerOpen ? 'Show Menu' : 'Collapse Menu' } placement='right'>
+                                    <Checkbox
+                                        icon={<ChevronRightIcon />}
+                                        onChange={toggleDrawerOpen}
+                                        checked={drawerOpen}
+                                        checkedIcon={<ChevronLeftIcon />}
+                                    />
+                                </Tooltip>
                             </Grid>
-                        </HideOnScroll>
+
+                            <HideOnScroll>
+                                <Grid item flexGrow={1} className='ScrollRight-item'>
+                                    <ToggleMode />
+                                </Grid>
+                            </HideOnScroll>
                         </Grid>
                     </Toolbar>
                 </AppBar>
