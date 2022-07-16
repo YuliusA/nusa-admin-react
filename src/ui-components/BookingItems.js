@@ -2,7 +2,14 @@ import { useState, useEffect } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import moment from 'moment';
-import { DataGrid } from '@mui/x-data-grid';
+import {
+    DataGrid,
+    GridToolbarContainer,
+    GridToolbarColumnsButton,
+    GridToolbarFilterButton,
+    GridToolbarExport,
+    GridToolbarDensitySelector,
+} from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,6 +19,17 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import BorderClearIcon from '@mui/icons-material/BorderClear';
 import PageLoader from './PageLoader';
+
+const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
+}
 
 const columns = [
     {
@@ -101,7 +119,6 @@ const BookingItems = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [bookings, setBookings] = useState();
     const [pageSize, setPageSize] = useState(10);
-    // const effectRan = useRef(false);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -109,7 +126,7 @@ const BookingItems = () => {
     useEffect(() => {
         let isMounted = true;
 
-        if (!bookings?.length) {
+        if (!bookings?.length && isMounted) {
             const getBookings = async () => {
                 try {
                     const response = await axiosPrivate.get('/bookings');
@@ -136,12 +153,11 @@ const BookingItems = () => {
 
     return (
         <>
-            {/* {!isLoading ? */}
             {bookings?.length ?
                 <Paper elevation={0}>
                     <DataGrid
                         autoHeight
-                        density='comfortable'
+                        // density='comfortable'
                         rows={
                             bookings.map((item, i) => ({
                                 id: item._id,
@@ -161,6 +177,9 @@ const BookingItems = () => {
                             sorting: {
                                 sortModel: [{ field: 'bookingDate', sort: 'desc' }],
                             }
+                        }}
+                        components={{
+                            Toolbar: CustomToolbar,
                         }}
                         sx={{ '& .booking-link': { color: 'primary.main' }}}
                         // checkboxSelection
