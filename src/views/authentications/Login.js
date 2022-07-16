@@ -80,7 +80,6 @@ const Login = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const username = response?.data?.username;
             const roles = response?.data?.roles;
@@ -173,10 +172,12 @@ const Login = () => {
 
                 <Grid container sx={{ mt: 2, mb: 1 }}>
                     <Grid item md={6}>
-                        <FormControlLabel sx={{ '& .MuiFormControlLabel-label': {
-                            typography: 'body2',
-                            paddingTop: '2px'
-                        }}}
+                        <FormControlLabel
+                            sx={{
+                                '& .MuiFormControlLabel-label': {
+                                    typography: 'body2',
+                                    paddingTop: '2px'
+                                }}}
                             control={<Checkbox id='persist' color='primary' size='small' onChange={toggleCheck} checked={check} />}
                             label='Remember me'
                         />
