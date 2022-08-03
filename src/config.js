@@ -1,3 +1,4 @@
+// Site Configuration
 export const config = {
     colorMode: 'light',
     fontFamily: '',
