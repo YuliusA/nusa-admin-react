@@ -100,7 +100,6 @@ const BookingList = () => {
                     }]
                 });
                 navigate(`/bookings/${params.id}`, { state: { from: location }, replace: true });
-
             } else {
                 navigate(`/bookings/${params.id}`, { state: { from: location }, replace: true });
             }
