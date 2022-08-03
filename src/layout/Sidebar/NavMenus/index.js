@@ -7,7 +7,7 @@ const NavMenus = () => {
             return null;
         }
 
-        return <NavList key={item.id} item={item}/>
+        return <NavList key={item.id} item={item} />
     });
 
     return (

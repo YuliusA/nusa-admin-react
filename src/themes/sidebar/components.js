@@ -1,34 +1,6 @@
-import { createTheme } from "@mui/material/styles";
-import { orange, blue, blueGrey } from "@mui/material/colors";
 
-const Theme = createTheme({
-    nsColor: {
-        blue: blue[700],
-        orange: orange[500],
-        white: '#fff'
-    },
-    palette: {
-        background: {
-            default: '#f4f6f7'
-        }
-    },
-    typography: {
-        fontFamily: [
-            'Heebo',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif'
-        ].join(','),
-        menuOverline: {
-            color: blueGrey[800],
-            lineHeight: 1.66,
-            marginTop: 1.25,
-            fontWeight: 500,
-            fontSize: '.875rem',
-            padding: 1
-        },
-    },
-    components: {
+export default function SidebarComp(colors) {
+    return {
         MuiList: {
             styleOverrides: {
                 root: {
@@ -41,34 +13,20 @@ const Theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 8,
-                    color: blueGrey[600],
                     marginBottom: 4,
                     paddingBottom: 4,
                     paddingTop: 4,
-                    '&.Mui-selected': {
-                        backgroundColor: blue[50],
-                        color: blue[800],
-                        '&:hover': {
-                            backgroundColor: blue[50]
-                        },
-                        '& .MuiListItemIcon-root': {
-                            color: blue[800]
-                        },
-                        '& .MuiListItemText-primary': {
-                            fontWeight: 500
-                        }
-                    },
                     '&:hover': {
-                        color: blue[800],
+                        color: colors?.sidebar.hoverMenu.text,
                         '& .MuiListItemIcon-root': {
-                            color: blue[800]
+                            color: colors?.sidebar.hoverMenu.icon,
                         }
                     },
-                    '&.active': {
-                        backgroundColor: blue[50],
-                        color: blue[800],
+                    '&.active, &.Mui-selected': {
+                        backgroundColor: colors?.sidebar.activeMenu.background,
+                        color: colors?.sidebar.activeMenu.text,
                         '& .MuiListItemIcon-root': {
-                            color: blue[800]
+                            color: colors?.sidebar.activeMenu.icon,
                         },
                         '& .MuiListItemText-primary': {
                             fontWeight: 500
@@ -80,6 +38,7 @@ const Theme = createTheme({
         MuiListItemIcon: {
             styleOverrides: {
                 root: {
+                    color: colors?.sidebar.icon,
                     minWidth: 30,
                     '& .MuiSvgIcon-root': {
                         fontSize: '1.25rem'
@@ -109,18 +68,16 @@ const Theme = createTheme({
                             content: '""',
                             position: 'absolute',
                             left: 26,
-                            bottom: 20,
-                            height: 'calc(100% - 20px)',
+                            bottom: 14,
+                            height: 'calc(100% - 10px)',
                             width: 1,
                             opacity: 1,
-                            background: blue[50],
+                            background: colors?.action.disabledBackground,
                             zIndex: -1
                         }
                     }
                 }
             }
         }
-    },
-});
-
-export default Theme;
+    }
+}

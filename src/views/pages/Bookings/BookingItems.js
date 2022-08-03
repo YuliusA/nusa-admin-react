@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import moment from 'moment';
 import {
@@ -18,7 +18,9 @@ import Tooltip from '@mui/material/Tooltip';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import BorderClearIcon from '@mui/icons-material/BorderClear';
-import PageLoader from './PageLoader';
+// import PageLoader from './PageLoader';
+
+import { CircularLoader } from '../../../ui-components/Loader';
 
 const CustomToolbar = () => {
     return (
@@ -131,7 +133,7 @@ const BookingItems = () => {
                 try {
                     const response = await axiosPrivate.get('/bookings');
 
-                    console.log(response.data);
+                    // console.log(response.data);
                     isMounted && setBookings(response.data);
                 }
                 catch(err) {
@@ -154,6 +156,8 @@ const BookingItems = () => {
     return (
         <>
             {bookings?.length ?
+                <>
+                <Typography variant='h6'>Density</Typography>
                 <Paper elevation={0}>
                     <DataGrid
                         autoHeight
@@ -178,13 +182,15 @@ const BookingItems = () => {
                                 sortModel: [{ field: 'bookingDate', sort: 'desc' }],
                             }
                         }}
+                        /*
                         components={{
                             Toolbar: CustomToolbar,
-                        }}
+                        }}*/
                         sx={{ '& .booking-link': { color: 'primary.main' }}}
                         // checkboxSelection
                     />
                 </Paper>
+                </>
                 : isLoading ?
                     <Box sx={{
                         display: 'flex',
@@ -193,7 +199,7 @@ const BookingItems = () => {
                         justifyContent: 'center',
                         minHeight: '60vh'
                     }}>
-                        <PageLoader />
+                        <CircularLoader />
                     </Box>
                     :
                     <Typography paragraph>No Bookings Found</Typography>

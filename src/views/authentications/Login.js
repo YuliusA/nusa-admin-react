@@ -28,7 +28,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LoginIcon from '@mui/icons-material/Login';
-import LogoBrand from '../../ui-components/LogoBrand';
+import Logo from '../../ui-components/Logo';
 
 function AlertSlide(props) {
     return <Slide {...props} direction='down' />;
@@ -113,14 +113,14 @@ const Login = () => {
             alignItems: 'center',
             maxWidth: 400
         }}>
-            <Paper component='form' elevation={1} noValidate sx={{ p: { xs: 2, md: 3 }, borderRadius: 3 }}>
+            <Paper component='form' elevation={1} noValidate sx={{ p: { xs: 2, md: 3 }, borderRadius: 3, border: '1px solid rgba(255,255,255,0.12)' }}>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}>
                     <Box sx={{ mb: 3 }}>
-                        <LogoBrand width='172' height='38' />
+                        <Logo width='172' height='38' />
                     </Box>
 
                     <Typography variant="h5" sx={{ mb: 1 }}>

@@ -15,8 +15,10 @@ import Typography from '@mui/material/Typography';
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Divider from '@mui/material/Divider';
+// import { menuItems } from '../../../data/sidebar';
 
 function Dashboard() {
+    // const items = JSON.stringify(menuItems, null, '\t');
     return (
         <>
         {/* <Toolbar /> */}
@@ -25,8 +27,8 @@ function Dashboard() {
         <Divider sx={{ my: 3 }}/>
 
         <Grid container spacing={3}>
-            <Grid item lg={3}>
-                <Card>
+            <Grid item lg={3} md={6}>
+                <Card variant='outlined'>
                     <CardHeader
                         action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title="Shrimp and Chorizo Paella"
@@ -39,8 +41,8 @@ function Dashboard() {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item lg={3}>
-                <Card>
+            <Grid item lg={3} md={6}>
+                <Card variant='outlined'>
                     <CardHeader
                         action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title="Shrimp and Chorizo Paella"
@@ -53,8 +55,8 @@ function Dashboard() {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item lg={3}>
-                <Card>
+            <Grid item lg={3} md={6}>
+                <Card variant='outlined'>
                     <CardHeader
                         action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title="Shrimp and Chorizo Paella"
@@ -67,8 +69,8 @@ function Dashboard() {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item lg={3}>
-                <Card>
+            <Grid item lg={3} md={6}>
+                <Card variant='outlined'>
                     <CardHeader
                         action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title="Shrimp and Chorizo Paella"

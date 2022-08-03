@@ -1,19 +1,38 @@
+import { Suspense } from 'react';
+
+// Mui Components
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
-const LoaderWrapper = styled('div')({
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    zIndex: 1301,
-    width: '100%'
-});
+// Circular Loader
+export const CircularLoader = () => {
+    return (
+        <>
+            <CircularProgress color='warning' />
+            <Typography variant='overline'>Loading...</Typography>
+        </>
+    )
+}
 
-// ==============================|| LOADER ||============================== //
-const Loader = () => (
-    <LoaderWrapper>
+// Linear Loader
+const LinearLoader = () => (
+    <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 1301,
+        width: '100%'
+    }}>
         <LinearProgress color="warning" />
-    </LoaderWrapper>
+    </Box>
 );
 
-export default Loader;
+const Loadable = (Component) => (props) => (
+    <Suspense fallback={<LinearLoader />}>
+        <Component {...props} />
+    </Suspense>
+);
+
+export default Loadable;

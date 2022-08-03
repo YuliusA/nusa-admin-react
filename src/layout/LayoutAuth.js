@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 const LayoutAuth = () => {
     return (
         <Box component='main' sx={{
-            bgcolor: 'background.default',
+            bgcolor: 'neutral.main',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

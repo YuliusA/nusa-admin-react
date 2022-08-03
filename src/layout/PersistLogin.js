@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Box from '@mui/material/Box';
-import PageLoader from '../ui-components/PageLoader';
+import { CircularLoader } from '../ui-components/Loader';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +48,7 @@ const PersistLogin = () => {
                             justifyContent: 'center',
                             minHeight: '100vh'
                         }}>
-                            <PageLoader />
+                            <CircularLoader />
                       </Box>
                     : <Outlet />
             }
