@@ -8,7 +8,6 @@ import LayoutAdmin from "../layout/LayoutAdmin";
 
 // Mui Icons
 import HomeIcon from '@mui/icons-material/Home';
-import CircularProgress from '@mui/material/CircularProgress';
 
 const Dashboard     = Loadable(lazy(() => import('../views/pages/Dashboard')));
 const Hotels        = Loadable(lazy(() => import('../views/pages/Hotels')));

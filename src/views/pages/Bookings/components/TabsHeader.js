@@ -72,7 +72,7 @@ const TabsHeader = () => {
                     value={tab.path}
                     to={tab.path}
                     component={Link}
-                    sx={{ lineHeight: 1.5 }}
+                    sx={{ lineHeight: 2 }}
                     {...a11yProps(index)}
                 />
             ))}
